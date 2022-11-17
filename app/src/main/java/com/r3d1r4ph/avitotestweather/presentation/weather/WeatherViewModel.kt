@@ -51,11 +51,6 @@ class WeatherViewModel(
 		}
 	}
 
-	private fun openSearchCityScreen() {
-		_event.postEvent(WeatherAction.OpenSearchCityScreen)
-		updateState { copy(loading = false) }
-	}
-
 	private fun checkIsCitySelected() {
 		viewModelScope.launch {
 			checkIsCitySelectedUseCase(Unit)
@@ -68,8 +63,13 @@ class WeatherViewModel(
 					}
 				}
 				.onFailure {
-					throw it
+					openSearchCityScreen()
 				}
 		}
+	}
+
+	private fun openSearchCityScreen() {
+		_event.postEvent(WeatherAction.OpenSearchCityScreen)
+		updateState { copy(loading = false) }
 	}
 }
