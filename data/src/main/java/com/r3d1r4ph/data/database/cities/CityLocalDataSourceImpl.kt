@@ -2,8 +2,8 @@ package com.r3d1r4ph.data.database.cities
 
 import com.r3d1r4ph.data.database.cities.model.toDb
 import com.r3d1r4ph.data.database.cities.model.toDomain
-import com.r3d1r4ph.truedomain.cities.CityLocalDataSource
-import com.r3d1r4ph.truedomain.cities.model.City
+import com.r3d1r4ph.domain.cities.CityLocalDataSource
+import com.r3d1r4ph.domain.cities.model.City
 
 class CityLocalDataSourceImpl(
 	private val cityDao: CityDao

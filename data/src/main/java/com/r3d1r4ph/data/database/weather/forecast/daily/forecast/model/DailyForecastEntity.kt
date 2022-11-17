@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.r3d1r4ph.data.database.weather.forecast.common.model.WeatherDb
 import com.r3d1r4ph.data.database.weather.forecast.common.model.toDb
 import com.r3d1r4ph.data.database.weather.forecast.common.model.toDomain
-import com.r3d1r4ph.truedomain.weather.forecast.model.daily.forecast.DailyForecast
+import com.r3d1r4ph.domain.weather.forecast.model.daily.forecast.DailyForecast
 
 @Entity(tableName = "daily_forecasts")
 data class DailyForecastEntity(

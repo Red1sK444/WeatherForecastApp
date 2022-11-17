@@ -1,7 +1,7 @@
 package com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.model
 
 import com.r3d1r4ph.avitotestweather.presentation.common.utils.DateFormattingUtils.formatByPattern
-import com.r3d1r4ph.truedomain.weather.forecast.model.current.weather.CurrentWeather
+import com.r3d1r4ph.domain.weather.forecast.model.current.weather.CurrentWeather
 
 data class CurrentWeatherUi(
 	val city: String,

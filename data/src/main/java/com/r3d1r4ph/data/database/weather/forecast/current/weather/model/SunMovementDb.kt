@@ -1,6 +1,6 @@
 package com.r3d1r4ph.data.database.weather.forecast.current.weather.model
 
-import com.r3d1r4ph.truedomain.weather.forecast.model.current.weather.SunMovement
+import com.r3d1r4ph.domain.weather.forecast.model.current.weather.SunMovement
 
 data class SunMovementDb(
 	val sunrise: Long,

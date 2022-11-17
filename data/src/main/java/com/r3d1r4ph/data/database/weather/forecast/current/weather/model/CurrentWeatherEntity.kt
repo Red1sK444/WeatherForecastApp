@@ -7,7 +7,7 @@ import com.r3d1r4ph.data.database.weather.forecast.common.model.MainInfoDb
 import com.r3d1r4ph.data.database.weather.forecast.common.model.WeatherDb
 import com.r3d1r4ph.data.database.weather.forecast.common.model.toDb
 import com.r3d1r4ph.data.database.weather.forecast.common.model.toDomain
-import com.r3d1r4ph.truedomain.weather.forecast.model.current.weather.CurrentWeather
+import com.r3d1r4ph.domain.weather.forecast.model.current.weather.CurrentWeather
 
 @Entity(tableName = "current_weathers")
 data class CurrentWeatherEntity(

@@ -1,9 +1,9 @@
 package com.r3d1r4ph.data.network.cities
 
 import com.r3d1r4ph.data.network.cities.model.toDomain
-import com.r3d1r4ph.truedomain.cities.CitiesRemoteDataSource
-import com.r3d1r4ph.truedomain.cities.model.City
-import com.r3d1r4ph.truedomain.common.model.Location
+import com.r3d1r4ph.domain.cities.CitiesRemoteDataSource
+import com.r3d1r4ph.domain.cities.model.City
+import com.r3d1r4ph.domain.common.model.Location
 
 class CitiesRemoteDataSourceImpl(
 	private val citiesApi: CitiesApi

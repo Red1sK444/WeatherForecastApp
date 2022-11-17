@@ -1,6 +1,6 @@
 package com.r3d1r4ph.data.database.weather.forecast.daily.forecast.model
 
-import com.r3d1r4ph.truedomain.weather.forecast.model.daily.forecast.FeelsLike
+import com.r3d1r4ph.domain.weather.forecast.model.daily.forecast.FeelsLike
 
 data class FeelsLikeDb(
 	val day: Float,

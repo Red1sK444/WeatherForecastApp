@@ -7,8 +7,8 @@ import com.r3d1r4ph.avitotestweather.presentation.common.ui.AppViewModel
 import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.model.DashboardAction
 import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.model.DashboardState
 import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.model.toUi
-import com.r3d1r4ph.truedomain.weather.forecast.FetchWeatherForecastUseCase
-import com.r3d1r4ph.truedomain.weather.forecast.ObserveWeatherForecastUseCase
+import com.r3d1r4ph.domain.weather.forecast.FetchWeatherForecastUseCase
+import com.r3d1r4ph.domain.weather.forecast.ObserveWeatherForecastUseCase
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch

@@ -3,10 +3,10 @@ package com.r3d1r4ph.data.network.weather.forecast
 import com.r3d1r4ph.data.network.weather.forecast.model.current.weather.toDomain
 import com.r3d1r4ph.data.network.weather.forecast.model.daily.forecast.toDomain
 import com.r3d1r4ph.data.network.weather.forecast.model.hourly.forecast.toDomain
-import com.r3d1r4ph.truedomain.weather.forecast.WeatherForecastRemoteDataSource
-import com.r3d1r4ph.truedomain.weather.forecast.model.current.weather.CurrentWeather
-import com.r3d1r4ph.truedomain.weather.forecast.model.daily.forecast.DailyForecast
-import com.r3d1r4ph.truedomain.weather.forecast.model.hourly.forecast.HourlyForecast
+import com.r3d1r4ph.domain.weather.forecast.WeatherForecastRemoteDataSource
+import com.r3d1r4ph.domain.weather.forecast.model.current.weather.CurrentWeather
+import com.r3d1r4ph.domain.weather.forecast.model.daily.forecast.DailyForecast
+import com.r3d1r4ph.domain.weather.forecast.model.hourly.forecast.HourlyForecast
 
 class WeatherForecastRemoteDataSourceImpl(
 	private val weatherForecastApi: WeatherForecastApi

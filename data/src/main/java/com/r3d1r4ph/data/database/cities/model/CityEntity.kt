@@ -2,7 +2,7 @@ package com.r3d1r4ph.data.database.cities.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.r3d1r4ph.truedomain.cities.model.City
+import com.r3d1r4ph.domain.cities.model.City
 
 @Entity(tableName = "cities")
 data class CityEntity(

@@ -5,10 +5,10 @@ import com.r3d1r4ph.avitotestweather.presentation.common.ui.StatefulAppViewModel
 import com.r3d1r4ph.avitotestweather.presentation.common.utils.CoroutineUtils.debounce
 import com.r3d1r4ph.avitotestweather.presentation.weather.search.city.model.SearchCityAction
 import com.r3d1r4ph.avitotestweather.presentation.weather.search.city.model.SearchCityState
-import com.r3d1r4ph.truedomain.cities.GetCitiesUseCase
-import com.r3d1r4ph.truedomain.cities.SaveSelectedCityUseCase
-import com.r3d1r4ph.truedomain.cities.model.City
-import com.r3d1r4ph.truedomain.cities.model.CityPrefix
+import com.r3d1r4ph.domain.cities.GetCitiesUseCase
+import com.r3d1r4ph.domain.cities.SaveSelectedCityUseCase
+import com.r3d1r4ph.domain.cities.model.City
+import com.r3d1r4ph.domain.cities.model.CityPrefix
 import kotlinx.coroutines.launch
 
 class SearchCityViewModel(

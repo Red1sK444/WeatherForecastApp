@@ -9,10 +9,10 @@ import com.r3d1r4ph.data.database.weather.forecast.daily.forecast.model.toDomain
 import com.r3d1r4ph.data.database.weather.forecast.hourly.forecast.HourlyForecastDao
 import com.r3d1r4ph.data.database.weather.forecast.hourly.forecast.model.toDb
 import com.r3d1r4ph.data.database.weather.forecast.hourly.forecast.model.toDomain
-import com.r3d1r4ph.truedomain.weather.forecast.WeatherForecastLocalDataSource
-import com.r3d1r4ph.truedomain.weather.forecast.model.current.weather.CurrentWeather
-import com.r3d1r4ph.truedomain.weather.forecast.model.daily.forecast.DailyForecast
-import com.r3d1r4ph.truedomain.weather.forecast.model.hourly.forecast.HourlyForecast
+import com.r3d1r4ph.domain.weather.forecast.WeatherForecastLocalDataSource
+import com.r3d1r4ph.domain.weather.forecast.model.current.weather.CurrentWeather
+import com.r3d1r4ph.domain.weather.forecast.model.daily.forecast.DailyForecast
+import com.r3d1r4ph.domain.weather.forecast.model.hourly.forecast.HourlyForecast
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

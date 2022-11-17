@@ -4,9 +4,9 @@ import androidx.lifecycle.viewModelScope
 import com.r3d1r4ph.avitotestweather.presentation.common.ui.StatefulAppViewModel
 import com.r3d1r4ph.avitotestweather.presentation.weather.model.WeatherAction
 import com.r3d1r4ph.avitotestweather.presentation.weather.model.WeatherState
-import com.r3d1r4ph.truedomain.cities.CheckIsCitySelectedUseCase
-import com.r3d1r4ph.truedomain.cities.FetchCityByLocationUseCase
-import com.r3d1r4ph.truedomain.common.model.Location
+import com.r3d1r4ph.domain.cities.CheckIsCitySelectedUseCase
+import com.r3d1r4ph.domain.cities.FetchCityByLocationUseCase
+import com.r3d1r4ph.domain.common.model.Location
 import kotlinx.coroutines.launch
 
 class WeatherViewModel(

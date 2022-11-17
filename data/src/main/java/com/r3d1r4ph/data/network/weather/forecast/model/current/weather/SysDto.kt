@@ -1,6 +1,6 @@
 package com.r3d1r4ph.data.network.weather.forecast.model.current.weather
 
-import com.r3d1r4ph.truedomain.weather.forecast.model.current.weather.SunMovement
+import com.r3d1r4ph.domain.weather.forecast.model.current.weather.SunMovement
 
 @kotlinx.serialization.Serializable
 data class SysDto(

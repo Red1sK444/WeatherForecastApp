@@ -3,7 +3,7 @@ package com.r3d1r4ph.data.network.weather.forecast.model.hourly.forecast
 import com.r3d1r4ph.data.network.weather.forecast.model.MainInfoDto
 import com.r3d1r4ph.data.network.weather.forecast.model.WeatherDto
 import com.r3d1r4ph.data.network.weather.forecast.model.toDomain
-import com.r3d1r4ph.truedomain.weather.forecast.model.hourly.forecast.HourlyForecast
+import com.r3d1r4ph.domain.weather.forecast.model.hourly.forecast.HourlyForecast
 import kotlinx.serialization.SerialName
 
 @kotlinx.serialization.Serializable

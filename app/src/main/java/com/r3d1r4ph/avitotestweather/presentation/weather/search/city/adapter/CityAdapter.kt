@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.r3d1r4ph.avitotestweather.R
 import com.r3d1r4ph.avitotestweather.databinding.ItemRecyclerCityBinding
 import com.r3d1r4ph.avitotestweather.presentation.common.adapter.createDiff
-import com.r3d1r4ph.truedomain.cities.model.City
+import com.r3d1r4ph.domain.cities.model.City
 
 class CityAdapter(private val listener: CityListener) : ListAdapter<City, CityAdapter.CityViewHolder>(DIFF) {
 

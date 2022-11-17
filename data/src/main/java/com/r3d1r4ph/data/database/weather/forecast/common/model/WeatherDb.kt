@@ -1,6 +1,6 @@
 package com.r3d1r4ph.data.database.weather.forecast.common.model
 
-import com.r3d1r4ph.truedomain.weather.forecast.model.Weather
+import com.r3d1r4ph.domain.weather.forecast.model.Weather
 
 data class WeatherDb(
 	val id: Int,

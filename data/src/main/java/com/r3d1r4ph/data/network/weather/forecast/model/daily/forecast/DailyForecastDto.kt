@@ -2,7 +2,7 @@ package com.r3d1r4ph.data.network.weather.forecast.model.daily.forecast
 
 import com.r3d1r4ph.data.network.weather.forecast.model.WeatherDto
 import com.r3d1r4ph.data.network.weather.forecast.model.toDomain
-import com.r3d1r4ph.truedomain.weather.forecast.model.daily.forecast.DailyForecast
+import com.r3d1r4ph.domain.weather.forecast.model.daily.forecast.DailyForecast
 import kotlinx.serialization.SerialName
 
 @kotlinx.serialization.Serializable

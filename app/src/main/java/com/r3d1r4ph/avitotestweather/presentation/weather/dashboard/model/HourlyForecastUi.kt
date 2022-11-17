@@ -2,7 +2,7 @@ package com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.model
 
 import com.r3d1r4ph.avitotestweather.presentation.common.utils.DateFormattingUtils
 import com.r3d1r4ph.avitotestweather.presentation.common.utils.DateFormattingUtils.formatByPattern
-import com.r3d1r4ph.truedomain.weather.forecast.model.hourly.forecast.HourlyForecast
+import com.r3d1r4ph.domain.weather.forecast.model.hourly.forecast.HourlyForecast
 
 data class HourlyForecastUi(
 	val formattedTime: String,

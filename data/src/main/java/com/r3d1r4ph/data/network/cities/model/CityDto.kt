@@ -1,6 +1,6 @@
 package com.r3d1r4ph.data.network.cities.model
 
-import com.r3d1r4ph.truedomain.cities.model.City
+import com.r3d1r4ph.domain.cities.model.City
 
 @kotlinx.serialization.Serializable
 data class CityDto(

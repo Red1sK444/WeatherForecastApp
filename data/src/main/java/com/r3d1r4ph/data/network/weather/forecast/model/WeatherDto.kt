@@ -1,6 +1,6 @@
 package com.r3d1r4ph.data.network.weather.forecast.model
 
-import com.r3d1r4ph.truedomain.weather.forecast.model.Weather
+import com.r3d1r4ph.domain.weather.forecast.model.Weather
 
 @kotlinx.serialization.Serializable
 data class WeatherDto(
