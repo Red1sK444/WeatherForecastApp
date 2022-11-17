@@ -1,9 +1,11 @@
 package com.r3d1r4ph.avitotestweather.presentation.weather.dashboard
 
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.r3d1r4ph.avitotestweather.R
 import com.r3d1r4ph.avitotestweather.databinding.FragmentDashboardBinding
@@ -25,6 +27,10 @@ class DashboardFragment : Fragment(), ViewBindingHolder<FragmentDashboardBinding
 	private val viewModel by viewModel<DashboardViewModel>()
 	private var hourlyForecastAdapter: HourlyForecastAdapter? = null
 	private var dailyForecastAdapter: DailyForecastAdapter? = null
+
+	private val requestPermissionLauncher = registerForActivityResult(
+		ActivityResultContracts.RequestPermission()
+	) { isGranted -> viewModel.onRequestLocationPermissionResult(isGranted) }
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -57,6 +63,7 @@ class DashboardFragment : Fragment(), ViewBindingHolder<FragmentDashboardBinding
 				addItemDecoration(DailyForecastItemDecoration())
 			}
 			dashboardSearchCityImageButton.setOnClickListener { viewModel.onSearchCityClick() }
+			dashboardMyLocationImageButton.setOnClickListener { viewModel.onMyLocationClick() }
 		}
 	}
 
@@ -85,9 +92,14 @@ class DashboardFragment : Fragment(), ViewBindingHolder<FragmentDashboardBinding
 
 	private fun handleAction(action: DashboardAction) {
 		when (action) {
-			DashboardAction.ShowError            -> showErrorSnack()
-			DashboardAction.OpenSearchCityScreen -> fragmentListener.onSearchCityClick()
+			DashboardAction.ShowError                 -> showErrorSnack()
+			DashboardAction.OpenSearchCityScreen      -> fragmentListener.onSearchCityClick()
+			DashboardAction.RequestLocationPermission -> requestLocationPermission()
 		}
+	}
+
+	private fun requestLocationPermission() {
+		requestPermissionLauncher.launch(ACCESS_COARSE_LOCATION)
 	}
 
 	override fun onDestroyView() {

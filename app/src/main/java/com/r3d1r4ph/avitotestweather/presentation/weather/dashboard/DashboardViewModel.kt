@@ -7,6 +7,9 @@ import com.r3d1r4ph.avitotestweather.presentation.common.ui.AppViewModel
 import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.model.DashboardAction
 import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.model.DashboardState
 import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.model.toUi
+import com.r3d1r4ph.domain.cities.FetchCityByLocationUseCase
+import com.r3d1r4ph.domain.common.model.Location
+import com.r3d1r4ph.domain.device.location.GetDeviceLocationUseCase
 import com.r3d1r4ph.domain.weather.forecast.FetchWeatherForecastUseCase
 import com.r3d1r4ph.domain.weather.forecast.ObserveWeatherForecastUseCase
 import kotlinx.coroutines.flow.mapNotNull
@@ -15,7 +18,9 @@ import kotlinx.coroutines.launch
 
 class DashboardViewModel(
 	private val fetchWeatherForecastUseCase: FetchWeatherForecastUseCase,
-	observeWeatherForecastUseCase: ObserveWeatherForecastUseCase
+	private val getDeviceLocationUseCase: GetDeviceLocationUseCase,
+	private val fetchCityByLocationUseCase: FetchCityByLocationUseCase,
+	observeWeatherForecastUseCase: ObserveWeatherForecastUseCase,
 ) : AppViewModel<DashboardAction>() {
 
 	val state: LiveData<DashboardState> = observeWeatherForecastUseCase(Unit)
@@ -45,6 +50,32 @@ class DashboardViewModel(
 					_event.postEvent(DashboardAction.ShowError)
 				}
 		}
+	}
+
+	fun onMyLocationClick() {
+		_event.postEvent(DashboardAction.RequestLocationPermission)
+	}
+
+	fun onRequestLocationPermissionResult(isGranted: Boolean) {
+		if (isGranted) {
+			fetchDeviceLocationData()
+		} else {
+			_event.postEvent(DashboardAction.ShowError)
+		}
+	}
+
+	private fun fetchDeviceLocationData() {
+		viewModelScope.launch {
+			getDeviceLocationUseCase(Unit)
+				.onSuccess { fetchCityByLocation(it) }
+				.onFailure { _event.postEvent(DashboardAction.ShowError) }
+		}
+	}
+
+	private suspend fun fetchCityByLocation(location: Location) {
+		fetchCityByLocationUseCase(location)
+			.onSuccess { fetchWeatherForecast() }
+			.onFailure { _event.postEvent(DashboardAction.ShowError) }
 	}
 
 	fun onSearchCityClick() {

@@ -1,8 +1,6 @@
 package com.r3d1r4ph.avitotestweather.presentation.weather
 
-import android.content.pm.PackageManager
 import androidx.lifecycle.viewModelScope
-import com.r3d1r4ph.avitotestweather.presentation.common.permissions.PermissionsManager
 import com.r3d1r4ph.avitotestweather.presentation.common.ui.StatefulAppViewModel
 import com.r3d1r4ph.avitotestweather.presentation.weather.model.WeatherAction
 import com.r3d1r4ph.avitotestweather.presentation.weather.model.WeatherState
@@ -26,16 +24,15 @@ class WeatherViewModel(
 
 	fun isLoading(): Boolean = _state.value?.loading ?: true
 
-	fun onRequestPermissionResult(requestCode: Int, grantResults: IntArray) {
-		if (requestCode == PermissionsManager.LOCATION_PERMISSION_REQUEST_CODE && grantResults.isNotEmpty()) {
-			when (grantResults.first()) {
-				PackageManager.PERMISSION_GRANTED -> onLocationPermissionGranted()
-				PackageManager.PERMISSION_DENIED  -> openSearchCityScreen()
-			}
+	fun onRequestLocationPermissionResult(isGranted: Boolean) {
+		if (isGranted) {
+			getDeviceLocation()
+		} else {
+			openSearchCityScreen()
 		}
 	}
 
-	fun onLocationPermissionGranted() {
+	private fun getDeviceLocation() {
 		viewModelScope.launch {
 			getDeviceLocationUseCase(Unit)
 				.onSuccess { fetchCityByLocation(it) }
@@ -54,10 +51,6 @@ class WeatherViewModel(
 			}
 	}
 
-	fun onLocationPermissionDenied() {
-		_event.postEvent(WeatherAction.RequestLocationPermission)
-	}
-
 	private fun checkIsCitySelected() {
 		viewModelScope.launch {
 			checkIsCitySelectedUseCase(Unit)
@@ -66,7 +59,7 @@ class WeatherViewModel(
 						_event.postEvent(WeatherAction.OpenDashboardScreen)
 						updateState { copy(loading = false) }
 					} else {
-						_event.postEvent(WeatherAction.CheckLocationPermission)
+						_event.postEvent(WeatherAction.RequestLocationPermission)
 					}
 				}
 				.onFailure {

@@ -27,11 +27,13 @@
 
 		<com.google.android.material.textview.MaterialTextView
 			android:id="@+id/dashboardLastUpdateTimeTextView"
-			android:layout_width="wrap_content"
+			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
 			android:textColor="@color/dark_gray"
 			android:textSize="15sp"
+			android:textAlignment="textStart"
+			app:layout_constraintEnd_toStartOf="@id/dashboardSearchCityImageButton"
 			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
 			app:layout_constraintTop_toBottomOf="@id/dashboardCityTextView"/>
 
@@ -44,6 +46,17 @@
 			android:backgroundTint="@android:color/transparent"
 			app:layout_constraintEnd_toStartOf="@id/dashboardRightGuideline"
 			app:layout_constraintTop_toTopOf="parent"
+			tools:ignore="ContentDescription"/>
+
+		<ImageButton
+			android:id="@+id/dashboardMyLocationImageButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:src="@drawable/ic_my_location"
+			android:backgroundTint="@android:color/transparent"
+			app:layout_constraintEnd_toStartOf="@id/dashboardRightGuideline"
+			app:layout_constraintTop_toBottomOf="@id/dashboardSearchCityImageButton"
 			tools:ignore="ContentDescription"/>
 
 		<com.google.android.material.textview.MaterialTextView

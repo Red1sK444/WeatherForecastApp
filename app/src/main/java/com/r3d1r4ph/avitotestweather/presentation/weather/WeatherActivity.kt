@@ -1,12 +1,12 @@
 package com.r3d1r4ph.avitotestweather.presentation.weather
 
+import android.Manifest
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.r3d1r4ph.avitotestweather.R
 import com.r3d1r4ph.avitotestweather.presentation.common.extensions.replaceFragment
-import com.r3d1r4ph.avitotestweather.presentation.common.permissions.PermissionsManager.isLocationPermissionGranted
-import com.r3d1r4ph.avitotestweather.presentation.common.permissions.PermissionsManager.requestLocationPermission
 import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.DashboardFragment
 import com.r3d1r4ph.avitotestweather.presentation.weather.model.WeatherAction
 import com.r3d1r4ph.avitotestweather.presentation.weather.search.city.SearchCityFragment
@@ -16,6 +16,10 @@ import java.util.*
 class WeatherActivity : AppCompatActivity(), SearchCityFragment.SearchCityFragmentListener, DashboardFragment.DashboardFragmentListener {
 
 	private val viewModel by viewModel<WeatherViewModel>()
+
+	private val requestPermissionLauncher = registerForActivityResult(
+		ActivityResultContracts.RequestPermission()
+	) { isGranted -> viewModel.onRequestLocationPermissionResult(isGranted) }
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		installSplashScreen().apply { setKeepOnScreenCondition { viewModel.isLoading() } }
@@ -47,26 +51,12 @@ class WeatherActivity : AppCompatActivity(), SearchCityFragment.SearchCityFragme
 					SearchCityFragment.newInstance(),
 					SearchCityFragment.TAG
 				)
-			WeatherAction.CheckLocationPermission   -> checkLocationPermission()
 			WeatherAction.RequestLocationPermission -> requestLocationPermission()
 		}
 	}
 
-	private fun checkLocationPermission() {
-		if (isLocationPermissionGranted()) {
-			viewModel.onLocationPermissionGranted()
-		} else {
-			viewModel.onLocationPermissionDenied()
-		}
-	}
-
-	override fun onRequestPermissionsResult(
-		requestCode: Int,
-		permissions: Array<String>,
-		grantResults: IntArray
-	) {
-		super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-		viewModel.onRequestPermissionResult(requestCode, grantResults)
+	private fun requestLocationPermission() {
+		requestPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
 	}
 
 	override fun onCitySelected() {
