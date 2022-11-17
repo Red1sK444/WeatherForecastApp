@@ -1,17 +1,21 @@
 package com.r3d1r4ph.avitotestweather.presentation.weather
 
+import android.content.pm.PackageManager
 import androidx.lifecycle.viewModelScope
+import com.r3d1r4ph.avitotestweather.presentation.common.permissions.PermissionsManager
 import com.r3d1r4ph.avitotestweather.presentation.common.ui.StatefulAppViewModel
 import com.r3d1r4ph.avitotestweather.presentation.weather.model.WeatherAction
 import com.r3d1r4ph.avitotestweather.presentation.weather.model.WeatherState
 import com.r3d1r4ph.domain.cities.CheckIsCitySelectedUseCase
 import com.r3d1r4ph.domain.cities.FetchCityByLocationUseCase
 import com.r3d1r4ph.domain.common.model.Location
+import com.r3d1r4ph.domain.device.location.GetDeviceLocationUseCase
 import kotlinx.coroutines.launch
 
 class WeatherViewModel(
 	private val checkIsCitySelectedUseCase: CheckIsCitySelectedUseCase,
-	private val fetchCityByLocationUseCase: FetchCityByLocationUseCase
+	private val fetchCityByLocationUseCase: FetchCityByLocationUseCase,
+	private val getDeviceLocationUseCase: GetDeviceLocationUseCase
 ) : StatefulAppViewModel<WeatherState, WeatherAction>(
 	defaultState = WeatherState(loading = true)
 ) {
@@ -22,33 +26,36 @@ class WeatherViewModel(
 
 	fun isLoading(): Boolean = _state.value?.loading ?: true
 
-	private fun fetchCityByLocation(latitude: Float, longitude: Float) {
-		viewModelScope.launch {
-			fetchCityByLocationUseCase(Location(latitude = latitude, longitude = longitude))
-				.onSuccess {
-					_event.postEvent(WeatherAction.OpenDashboardScreen)
-					updateState { copy(loading = false) }
-				}
-				.onFailure {
-					openSearchCityScreen()
-				}
+	fun onRequestPermissionResult(requestCode: Int, grantResults: IntArray) {
+		if (requestCode == PermissionsManager.LOCATION_PERMISSION_REQUEST_CODE && grantResults.isNotEmpty()) {
+			when (grantResults.first()) {
+				PackageManager.PERMISSION_GRANTED -> onLocationPermissionGranted()
+				PackageManager.PERMISSION_DENIED  -> openSearchCityScreen()
+			}
 		}
 	}
 
 	fun onLocationPermissionGranted() {
-		_event.postEvent(WeatherAction.CheckCurrentLocation)
+		viewModelScope.launch {
+			getDeviceLocationUseCase(Unit)
+				.onSuccess { fetchCityByLocation(it) }
+				.onFailure { openSearchCityScreen() }
+		}
+	}
+
+	private suspend fun fetchCityByLocation(location: Location) {
+		fetchCityByLocationUseCase(location)
+			.onSuccess {
+				_event.postEvent(WeatherAction.OpenDashboardScreen)
+				updateState { copy(loading = false) }
+			}
+			.onFailure {
+				openSearchCityScreen()
+			}
 	}
 
 	fun onLocationPermissionDenied() {
-		openSearchCityScreen()
-	}
-
-	fun onLocationGet(location: android.location.Location?) {
-		if (location != null) {
-			fetchCityByLocation(latitude = location.latitude.toFloat(), location.longitude.toFloat())
-		} else {
-			openSearchCityScreen()
-		}
+		_event.postEvent(WeatherAction.RequestLocationPermission)
 	}
 
 	private fun checkIsCitySelected() {
@@ -59,7 +66,7 @@ class WeatherViewModel(
 						_event.postEvent(WeatherAction.OpenDashboardScreen)
 						updateState { copy(loading = false) }
 					} else {
-						_event.postEvent(WeatherAction.CheckCurrentLocation)
+						_event.postEvent(WeatherAction.CheckLocationPermission)
 					}
 				}
 				.onFailure {

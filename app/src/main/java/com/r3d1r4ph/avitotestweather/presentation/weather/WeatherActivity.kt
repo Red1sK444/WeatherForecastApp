@@ -1,14 +1,12 @@
 package com.r3d1r4ph.avitotestweather.presentation.weather
 
-import android.Manifest.permission.ACCESS_COARSE_LOCATION
-import android.annotation.SuppressLint
-import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.google.android.gms.location.LocationServices
 import com.r3d1r4ph.avitotestweather.R
 import com.r3d1r4ph.avitotestweather.presentation.common.extensions.replaceFragment
+import com.r3d1r4ph.avitotestweather.presentation.common.permissions.PermissionsManager.isLocationPermissionGranted
+import com.r3d1r4ph.avitotestweather.presentation.common.permissions.PermissionsManager.requestLocationPermission
 import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.DashboardFragment
 import com.r3d1r4ph.avitotestweather.presentation.weather.model.WeatherAction
 import com.r3d1r4ph.avitotestweather.presentation.weather.search.city.SearchCityFragment
@@ -18,8 +16,6 @@ import java.util.*
 class WeatherActivity : AppCompatActivity(), SearchCityFragment.SearchCityFragmentListener, DashboardFragment.DashboardFragmentListener {
 
 	private val viewModel by viewModel<WeatherViewModel>()
-
-	private val fusedLocationClient by lazy { LocationServices.getFusedLocationProviderClient(this) }
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		installSplashScreen().apply { setKeepOnScreenCondition { viewModel.isLoading() } }
@@ -38,61 +34,39 @@ class WeatherActivity : AppCompatActivity(), SearchCityFragment.SearchCityFragme
 
 	private fun handleAction(action: WeatherAction) {
 		when (action) {
-			WeatherAction.OpenDashboardScreen     ->
+			WeatherAction.OpenDashboardScreen       ->
 				replaceFragment(
 					R.id.mainFragmentContainer,
 					DashboardFragment.newInstance(),
 					DashboardFragment.TAG
 				)
 
-			is WeatherAction.OpenSearchCityScreen ->
+			is WeatherAction.OpenSearchCityScreen   ->
 				replaceFragment(
 					R.id.mainFragmentContainer,
 					SearchCityFragment.newInstance(),
 					SearchCityFragment.TAG
 				)
-			WeatherAction.CheckCurrentLocation    -> checkCurrentLocation()
+			WeatherAction.CheckLocationPermission   -> checkLocationPermission()
+			WeatherAction.RequestLocationPermission -> requestLocationPermission()
 		}
 	}
 
-	@SuppressLint("MissingPermission", "SetTextI18n")
-	private fun checkCurrentLocation() {
+	private fun checkLocationPermission() {
 		if (isLocationPermissionGranted()) {
-			fusedLocationClient.lastLocation.addOnCompleteListener(this) { task ->
-				viewModel.onLocationGet(task.result)
-			}
+			viewModel.onLocationPermissionGranted()
 		} else {
-			requestPermissions()
+			viewModel.onLocationPermissionDenied()
 		}
 	}
 
-	private fun isLocationPermissionGranted(): Boolean {
-		if (checkSelfPermission(ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-			return true
-		}
-		return false
-	}
-
-	private fun requestPermissions() {
-		requestPermissions(
-			arrayOf(ACCESS_COARSE_LOCATION),
-			LOCATION_PERMISSION_ID
-		)
-	}
-
-	@SuppressLint("MissingSuperCall")
 	override fun onRequestPermissionsResult(
 		requestCode: Int,
 		permissions: Array<String>,
 		grantResults: IntArray
 	) {
-		if (requestCode == LOCATION_PERMISSION_ID) {
-			if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-				viewModel.onLocationPermissionGranted()
-			} else {
-				viewModel.onLocationPermissionDenied()
-			}
-		}
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+		viewModel.onRequestPermissionResult(requestCode, grantResults)
 	}
 
 	override fun onCitySelected() {
@@ -110,10 +84,5 @@ class WeatherActivity : AppCompatActivity(), SearchCityFragment.SearchCityFragme
 			SearchCityFragment.newInstance(),
 			SearchCityFragment.TAG
 		)
-	}
-
-	private companion object {
-
-		private const val LOCATION_PERMISSION_ID = 2
 	}
 }

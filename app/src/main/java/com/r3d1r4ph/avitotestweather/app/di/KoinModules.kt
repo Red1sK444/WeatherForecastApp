@@ -11,6 +11,7 @@ import com.r3d1r4ph.data.network.cities.CitiesApi
 import com.r3d1r4ph.data.network.cities.CitiesRemoteDataSourceImpl
 import com.r3d1r4ph.data.network.common.interceptors.CitiesQueryParamsInterceptor
 import com.r3d1r4ph.data.network.common.interceptors.WeatherQueryParamsInterceptor
+import com.r3d1r4ph.data.network.device.location.DeviceLocationRemoteDataSourceImpl
 import com.r3d1r4ph.data.network.weather.forecast.WeatherForecastApi
 import com.r3d1r4ph.data.network.weather.forecast.WeatherForecastRemoteDataSourceImpl
 import com.r3d1r4ph.domain.cities.CheckIsCitySelectedUseCase
@@ -23,6 +24,9 @@ import com.r3d1r4ph.domain.cities.GetCitiesUseCase
 import com.r3d1r4ph.domain.cities.GetCitiesUseCaseImpl
 import com.r3d1r4ph.domain.cities.SaveSelectedCityUseCase
 import com.r3d1r4ph.domain.cities.SaveSelectedCityUseCaseImpl
+import com.r3d1r4ph.domain.device.location.DeviceLocationRemoteDataSource
+import com.r3d1r4ph.domain.device.location.GetDeviceLocationUseCase
+import com.r3d1r4ph.domain.device.location.GetDeviceLocationUseCaseImpl
 import com.r3d1r4ph.domain.weather.forecast.FetchWeatherForecastUseCase
 import com.r3d1r4ph.domain.weather.forecast.FetchWeatherForecastUseCaseImpl
 import com.r3d1r4ph.domain.weather.forecast.ObserveWeatherForecastUseCase
@@ -88,6 +92,7 @@ object KoinModules {
 		factoryOf(::WeatherForecastLocalDataSourceImpl) bind WeatherForecastLocalDataSource::class
 		factoryOf(::CitiesRemoteDataSourceImpl) bind CitiesRemoteDataSource::class
 		factoryOf(::CityLocalDataSourceImpl) bind CityLocalDataSource::class
+		factoryOf(::DeviceLocationRemoteDataSourceImpl) bind DeviceLocationRemoteDataSource::class
 	}
 
 	private val useCaseModule = module {
@@ -97,6 +102,7 @@ object KoinModules {
 		factoryOf(::CheckIsCitySelectedUseCaseImpl) bind CheckIsCitySelectedUseCase::class
 		factoryOf(::ObserveWeatherForecastUseCaseImpl) bind ObserveWeatherForecastUseCase::class
 		factoryOf(::FetchCityByLocationUseCaseImpl) bind FetchCityByLocationUseCase::class
+		factoryOf(::GetDeviceLocationUseCaseImpl) bind GetDeviceLocationUseCase::class
 	}
 
 	@ExperimentalSerializationApi

@@ -61,6 +61,13 @@ dependencies {
 
 	// optional - Kotlin Extensions and Coroutines support for Room
 	implementation("androidx.room:room-ktx:2.4.3")
+
+	// Play Services Coroutines
+	implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4'
+
+	// Play Services Location
+	api 'com.google.android.gms:play-services-location:21.0.1'
+
 	implementation project(path: ':domain')
 
 }
