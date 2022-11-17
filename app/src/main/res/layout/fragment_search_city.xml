@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/bg_screen">
+
+	<com.google.android.material.card.MaterialCardView
+		android:id="@+id/searchCitySearchCardView"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		app:cardCornerRadius="9dp"
+		app:cardElevation="4dp"
+		app:strokeColor="@color/black"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintStart_toStartOf="@id/searchCityLeftGuideline"
+		app:layout_constraintEnd_toEndOf="@id/searchCityRightGuideline"
+		app:strokeWidth="1dp">
+
+		<androidx.appcompat.widget.SearchView
+			android:id="@+id/searchCitySearchView"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/dark_white"
+			android:inputType="text"
+			app:searchIcon="@drawable/ic_search"
+			app:defaultQueryHint="@string/search_city_input_city_name"/>
+
+	</com.google.android.material.card.MaterialCardView>
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/searchCityCitiesRecyclerView"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_marginTop="16dp"
+		android:orientation="vertical"
+		app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+		app:layout_constraintStart_toStartOf="@id/searchCityLeftGuideline"
+		app:layout_constraintEnd_toEndOf="@id/searchCityRightGuideline"
+		app:layout_constraintTop_toBottomOf="@id/searchCitySearchCardView"
+		app:layout_constraintBottom_toBottomOf="parent"/>
+
+	<ProgressBar
+		android:id="@+id/searchCityLoadingProgressBar"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:layout_constraintStart_toStartOf="@id/searchCityCitiesRecyclerView"
+		app:layout_constraintEnd_toEndOf="@id/searchCityCitiesRecyclerView"
+		app:layout_constraintTop_toBottomOf="@id/searchCitySearchCardView"
+		app:layout_constraintBottom_toBottomOf="@id/searchCityCitiesRecyclerView"/>
+
+	<com.google.android.material.card.MaterialCardView
+		android:id="@+id/searchCityNoResultsCardView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:cardBackgroundColor="@color/green"
+		app:cardCornerRadius="9dp"
+		app:contentPadding="16dp"
+		app:contentPaddingLeft="32dp"
+		app:contentPaddingRight="32dp"
+		app:layout_constraintStart_toStartOf="@id/searchCityCitiesRecyclerView"
+		app:layout_constraintEnd_toEndOf="@id/searchCityCitiesRecyclerView"
+		app:layout_constraintTop_toBottomOf="@id/searchCitySearchCardView"
+		app:layout_constraintBottom_toBottomOf="@id/searchCityCitiesRecyclerView">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:orientation="vertical">
+
+			<com.google.android.material.textview.MaterialTextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@color/dark_white"
+				android:textStyle="bold"
+				android:textSize="15sp"
+				android:text="@string/search_city_no_results"
+				android:textAlignment="center"/>
+
+			<ImageView android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:src="@drawable/ic_confused_emoji"
+				tools:ignore="ContentDescription"/>
+		</LinearLayout>
+	</com.google.android.material.card.MaterialCardView>
+
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@+id/searchCityLeftGuideline"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		app:layout_constraintGuide_begin="16dp"/>
+
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@+id/searchCityRightGuideline"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		app:layout_constraintGuide_end="16dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

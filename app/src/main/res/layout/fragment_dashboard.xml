@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fillViewport="true">
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/bg_screen"
+		android:paddingBottom="16dp">
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/dashboardCityTextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="24dp"
+			android:fontFamily="@font/actay_wide_bold"
+			android:textSize="30sp"
+			android:letterSpacing="-0.03"
+			android:textColor="@color/purple"
+			android:text="Томск"
+			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
+			app:layout_constraintEnd_toStartOf="@id/dashboardSearchCityImageButton"
+			app:layout_constraintTop_toTopOf="parent"/>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/dashboardLastUpdateTimeTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:textColor="@color/dark_gray"
+			android:textSize="15sp"
+			android:text="Актуально на 13:00 5 мая 2022"
+			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
+			app:layout_constraintTop_toBottomOf="@id/dashboardCityTextView"/>
+
+		<ImageButton
+			android:id="@+id/dashboardSearchCityImageButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="24dp"
+			android:src="@drawable/ic_search"
+			android:backgroundTint="@android:color/transparent"
+			app:layout_constraintEnd_toStartOf="@id/dashboardRightGuideline"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:ignore="ContentDescription"/>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/dashboardCurrentTemperatureTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="95sp"
+			android:textColor="@color/dark_gray"
+			android:text="-3°"
+			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
+			app:layout_constraintTop_toBottomOf="@id/dashboardLastUpdateTimeTextView"
+		android:layout_marginTop="24dp"/>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/dashboardWeatherStateTextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:textColor="@color/purple"
+			android:textSize="16sp"
+			android:textStyle="bold"
+			android:text="Облачно"
+			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
+			app:layout_constraintTop_toBottomOf="@id/dashboardCurrentTemperatureTextView"
+			app:layout_constraintEnd_toEndOf="@+id/dashboardHourlyForecastTextView"/>
+
+		<ImageView
+			android:id="@+id/dashboardMinTemperatureImageView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="2dp"
+			android:src="@drawable/ic_arrow_down_accent"
+			app:layout_constraintStart_toStartOf="@id/dashboardMinTemperatureTextView"
+			app:layout_constraintEnd_toEndOf="@+id/dashboardMinTemperatureTextView"
+			app:layout_constraintBottom_toTopOf="@+id/dashboardMinTemperatureTextView"/>
+
+		<ImageView
+			android:id="@+id/dashboardMaxTemperatureImageView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="2dp"
+			android:src="@drawable/ic_arrow_up_accent"
+			app:layout_constraintStart_toStartOf="@+id/dashboardMaxTemperatureTextView"
+			app:layout_constraintEnd_toEndOf="@+id/dashboardMaxTemperatureTextView"
+			app:layout_constraintBottom_toTopOf="@+id/dashboardMaxTemperatureTextView"/>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/dashboardMinTemperatureTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="24dp"
+			android:textColor="@color/purple"
+			android:textSize="15sp"
+			android:text="0°"
+			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
+			app:layout_constraintTop_toBottomOf="@id/dashboardWeatherStateTextView"
+			app:layout_constraintEnd_toStartOf="@+id/dashboardMaxTemperatureTextView"
+			app:layout_constraintHorizontal_chainStyle="spread"/>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/dashboardMaxTemperatureTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="27dp"
+			android:textColor="@color/purple"
+			android:textSize="15sp"
+			android:text="10°"
+			app:layout_constraintStart_toEndOf="@+id/dashboardMinTemperatureTextView"
+			app:layout_constraintTop_toTopOf="@id/dashboardMinTemperatureTextView"
+			app:layout_constraintBottom_toBottomOf="@id/dashboardMinTemperatureTextView"/>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/dashboardHumidityTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/dashboard_humidity"
+			android:textColor="@color/dark_gray"
+			android:textSize="15sp"
+			app:layout_constraintEnd_toStartOf="@id/dashboardRightGuideline"
+			app:layout_constraintBottom_toTopOf="@id/dashboardFeelsLikeTemperatureTextView"/>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/dashboardFeelsLikeTemperatureTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="@color/dark_gray"
+			android:textSize="15sp"
+			android:text="@string/dashboard_feels_like"
+			app:layout_constraintEnd_toStartOf="@id/dashboardRightGuideline"
+			app:layout_constraintBottom_toBottomOf="@id/dashboardMaxTemperatureTextView"/>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/dashboardHourlyForecastTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="24dp"
+			android:text="@string/dashboard_hourly_forecast"
+			android:textColor="@color/dark_gray"
+			android:textSize="16sp"
+			android:fontFamily="@font/actay_wide_bold"
+			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
+			app:layout_constraintTop_toBottomOf="@id/dashboardMinTemperatureTextView"/>
+
+		<com.google.android.material.card.MaterialCardView
+			android:id="@+id/dashboardHourlyForecastCardView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="4dp"
+			app:cardCornerRadius="9dp"
+			app:strokeWidth="0dp"
+			app:cardBackgroundColor="@color/purple"
+			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
+			app:layout_constraintEnd_toStartOf="@id/dashboardRightGuideline"
+			app:layout_constraintTop_toBottomOf="@id/dashboardHourlyForecastTextView">
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/dashboardHourlyForecastRecyclerView"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+		</com.google.android.material.card.MaterialCardView>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/dashboardDailyForecastTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="24dp"
+			android:textColor="@color/dark_gray"
+			android:textSize="16sp"
+			android:fontFamily="@font/actay_wide_bold"
+			android:text="@string/dashboard_week_forecast"
+			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
+			app:layout_constraintTop_toBottomOf="@id/dashboardHourlyForecastCardView"/>
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/dashboardDailyForecastRecyclerView"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="4dp"
+			android:orientation="horizontal"
+			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
+			app:layout_constraintEnd_toStartOf="@id/dashboardRightGuideline"
+			app:layout_constraintTop_toBottomOf="@id/dashboardDailyForecastTextView"/>
+
+		<androidx.constraintlayout.widget.Guideline
+			android:id="@+id/dashboardLeftGuideline"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			app:layout_constraintGuide_begin="16dp"/>
+
+		<androidx.constraintlayout.widget.Guideline
+			android:id="@+id/dashboardRightGuideline"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			app:layout_constraintGuide_end="16dp"/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

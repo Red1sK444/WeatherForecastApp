@@ -1,0 +1,71 @@
+plugins {
+	id 'com.android.library'
+	id 'org.jetbrains.kotlin.android'
+	id 'kotlinx-serialization'
+	id 'kotlin-kapt'
+}
+
+android {
+	namespace 'com.r3d1r4ph.data'
+	compileSdk 33
+
+	defaultConfig {
+		minSdk 28
+		targetSdk 33
+
+		buildConfigField(
+			"String",
+			"WEATHER_API_KEY",
+			"\"4f68df695954ae7618bce4b04e0ec216\""
+		)
+
+		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+		consumerProguardFiles "consumer-rules.pro"
+	}
+
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+		}
+	}
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+	kotlinOptions {
+		jvmTarget = '1.8'
+	}
+}
+
+dependencies {
+
+	implementation 'androidx.core:core-ktx:1.9.0'
+	testImplementation 'junit:junit:4.13.2'
+	androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+	androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+	// Retrofit
+	api 'com.squareup.retrofit2:retrofit:2.9.0'
+	implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
+	implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
+
+	// Kotlin Serialization
+	api 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
+
+	//room
+	api("androidx.room:room-runtime:2.4.3")
+
+	// To use Kotlin annotation processing tool (kapt)
+	kapt("androidx.room:room-compiler:2.4.3")
+
+	// optional - Kotlin Extensions and Coroutines support for Room
+	implementation("androidx.room:room-ktx:2.4.3")
+	implementation project(path: ':domain')
+
+}
+
+// Allow references to generated code
+kapt {
+	correctErrorTypes = true
+}

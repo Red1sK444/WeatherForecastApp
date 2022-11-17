@@ -1,0 +1,18 @@
+<resources>
+	<!-- Common -->
+	<string name="app_name">Weather</string>
+	<string name="default_error">Произошла ошибка</string>
+
+	<!-- Dashboard -->
+	<string name="dashboard_feels_like">Ощущается: %d°</string>
+	<string name="dashboard_humidity">Влажность: %d%%</string>
+	<string name="dashboard_hourly_forecast">Часовой прогноз</string>
+	<string name="dashboard_week_forecast">Прогноз на неделю</string>
+	<string name="dashboard_city_country">%s, %s</string>
+	<string name="dashboard_actual_on">Актуально на: %s</string>
+	<string name="dashboard_celsius">%d°</string>
+
+	<!-- Search City -->
+	<string name="search_city_no_results">Очень жаль,\nно по вашему запросу\nничего не найдено</string>
+	<string name="search_city_input_city_name">Введите название города</string>
+</resources>

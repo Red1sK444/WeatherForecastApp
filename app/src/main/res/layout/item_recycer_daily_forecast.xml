@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	app:cardCornerRadius="9dp"
+	app:strokeWidth="0dp"
+	app:contentPadding="16dp"
+	app:cardBackgroundColor="@color/green">
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/itemDailyForecastDateTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="17 ноябра"
+			android:textColor="@color/dark_white"
+			android:textSize="15sp"
+			android:textStyle="bold"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"/>
+
+		<ImageView
+			android:id="@+id/itemDailyForecastWeatherIconImageView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/itemDailyForecastDateTextView"
+			tools:ignore="ContentDescription"/>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/itemDailyForecastTemperatureTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="4dp"
+			android:textSize="16sp"
+			android:textColor="@color/dark_white"
+			android:textStyle="bold"
+			android:text="23°"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/itemDailyForecastWeatherIconImageView"/>
+
+		<ImageView
+			android:id="@+id/itemDailyForecastMinTemperatureImageView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/ic_arrow_down"
+			app:layout_constraintStart_toStartOf="@+id/itemDailyForecastMinTemperatureTextView"
+			app:layout_constraintEnd_toEndOf="@+id/itemDailyForecastMinTemperatureTextView"
+			app:layout_constraintBottom_toTopOf="@+id/itemDailyForecastMinTemperatureTextView"
+			app:layout_constraintHorizontal_chainStyle="spread_inside"
+			tools:ignore="ContentDescription"/>
+
+		<ImageView
+			android:id="@+id/itemDailyForecastMaxTemperatureImageView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/ic_arrow_up"
+			app:layout_constraintStart_toStartOf="@+id/itemDailyForecastMaxTemperatureTextView"
+			app:layout_constraintEnd_toEndOf="@+id/itemDailyForecastMaxTemperatureTextView"
+			app:layout_constraintBottom_toTopOf="@+id/itemDailyForecastMaxTemperatureTextView"
+			tools:ignore="ContentDescription"/>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/itemDailyForecastMinTemperatureTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="32dp"
+			android:text="12°"
+			android:textSize="16sp"
+			android:textColor="@color/dark_white"
+			app:layout_constraintEnd_toStartOf="@id/itemDailyForecastMaxTemperatureTextView"
+			app:layout_constraintHorizontal_chainStyle="spread_inside"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/itemDailyForecastTemperatureTextView"/>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/itemDailyForecastMaxTemperatureTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="50dp"
+			android:textSize="16sp"
+			android:textColor="@color/dark_white"
+			android:text="32°"
+			app:layout_constraintBottom_toBottomOf="@id/itemDailyForecastMinTemperatureTextView"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/itemDailyForecastMinTemperatureTextView"
+			app:layout_constraintTop_toTopOf="@+id/itemDailyForecastMinTemperatureTextView"/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
