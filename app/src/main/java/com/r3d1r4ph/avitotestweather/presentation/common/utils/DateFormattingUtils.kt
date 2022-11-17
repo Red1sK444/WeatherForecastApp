@@ -16,6 +16,10 @@ object DateFormattingUtils {
 		/**
 		 * 1 september
 		 **/
+		HOUR_MIN("HH:mm"),
+		/**
+		 * 1 september
+		 **/
 		DAY_MONTH("dd MMMM"),
 
 		/**

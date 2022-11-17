@@ -9,11 +9,9 @@ import coil.load
 import com.r3d1r4ph.avitotestweather.R
 import com.r3d1r4ph.avitotestweather.databinding.ItemRecyclerHourlyForecastBinding
 import com.r3d1r4ph.avitotestweather.presentation.common.adapter.createDiff
-import com.r3d1r4ph.truedomain.weather.forecast.model.hourly.forecast.HourlyForecast
-import java.text.SimpleDateFormat
-import java.util.*
+import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.model.HourlyForecastUi
 
-class HourlyForecastAdapter : ListAdapter<HourlyForecast, HourlyForecastAdapter.HourlyForecastViewHolder>(DIFF) {
+class HourlyForecastAdapter : ListAdapter<HourlyForecastUi, HourlyForecastAdapter.HourlyForecastViewHolder>(DIFF) {
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HourlyForecastViewHolder =
 		HourlyForecastViewHolder(
@@ -30,19 +28,19 @@ class HourlyForecastAdapter : ListAdapter<HourlyForecast, HourlyForecastAdapter.
 
 		private val binding = ItemRecyclerHourlyForecastBinding.bind(view)
 
-		fun bind(hourlyForecast: HourlyForecast) {
+		fun bind(hourlyForecastUi: HourlyForecastUi) {
 			with(binding) {
-				itemHourlyForecastTimeTextView.text = SimpleDateFormat("HH:mm", Locale("RU")).format(Date(hourlyForecast.dateTime * 1000))
-				itemHourlyForecastWeatherIconImageView.load(hourlyForecast.weather.icon)
-				itemHourlyForecastTemperatureTextView.text = root.context.getString(R.string.dashboard_celsius, hourlyForecast.main.temperature.toInt())
+				itemHourlyForecastTimeTextView.text = hourlyForecastUi.formattedTime
+				itemHourlyForecastWeatherIconImageView.load(hourlyForecastUi.weatherIconUrl)
+				itemHourlyForecastTemperatureTextView.text = root.context.getString(R.string.dashboard_celsius, hourlyForecastUi.temperature)
 			}
 		}
 	}
 
 	private companion object {
 
-		val DIFF = createDiff<HourlyForecast> { oldItem, newItem ->
-			oldItem.dateTime == newItem.dateTime
+		val DIFF = createDiff<HourlyForecastUi> { oldItem, newItem ->
+			oldItem.formattedTime == newItem.formattedTime
 		}
 	}
 }

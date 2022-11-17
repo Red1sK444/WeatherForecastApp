@@ -5,17 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import coil.load
-import coil.size.Precision
-import coil.size.Scale
 import com.r3d1r4ph.avitotestweather.R
 import com.r3d1r4ph.avitotestweather.databinding.FragmentDashboardBinding
 import com.r3d1r4ph.avitotestweather.presentation.common.extensions.getParentAsListener
 import com.r3d1r4ph.avitotestweather.presentation.common.extensions.showErrorSnack
 import com.r3d1r4ph.avitotestweather.presentation.common.ui.ViewBindingHolder
 import com.r3d1r4ph.avitotestweather.presentation.common.ui.ViewBindingHolderImpl
-import com.r3d1r4ph.avitotestweather.presentation.common.utils.DateFormattingUtils
-import com.r3d1r4ph.avitotestweather.presentation.common.utils.DateFormattingUtils.formatByPattern
 import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.adapter.DailyForecastAdapter
 import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.adapter.HourlyForecastAdapter
 import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.decoration.DailyForecastItemDecoration
@@ -73,24 +68,24 @@ class DashboardFragment : Fragment(), ViewBindingHolder<FragmentDashboardBinding
 	}
 
 	private fun handleState(state: DashboardState) {
-		val currentWeather = state.currentWeather ?: return
+		val currentWeatherUi = state.currentWeatherUi ?: return
 		with(binding) {
-			dashboardCityTextView.text = getString(R.string.dashboard_city_country, currentWeather.city, currentWeather.country)
-			dashboardLastUpdateTimeTextView.text = getString(R.string.dashboard_actual_on, currentWeather.dateTime.formatByPattern())
-			dashboardCurrentTemperatureTextView.text = getString(R.string.dashboard_celsius, currentWeather.main.temperature.toInt())
-			dashboardWeatherStateTextView.text = currentWeather.weather.description.replaceFirstChar { it.uppercaseChar() }
-			dashboardMinTemperatureTextView.text = getString(R.string.dashboard_celsius, currentWeather.main.minTemperature.toInt())
-			dashboardMaxTemperatureTextView.text = getString(R.string.dashboard_celsius, currentWeather.main.maxTemperature.toInt())
-			dashboardHumidityTextView.text = getString(R.string.dashboard_humidity, currentWeather.main.humidity)
-			dashboardFeelsLikeTemperatureTextView.text = getString(R.string.dashboard_feels_like, currentWeather.main.feelsLike.toInt())
-			hourlyForecastAdapter?.submitList(state.hourlyForecasts)
-			dailyForecastAdapter?.submitList(state.dailyForecasts)
+			dashboardCityTextView.text = getString(R.string.dashboard_city_country, currentWeatherUi.city, currentWeatherUi.country)
+			dashboardLastUpdateTimeTextView.text = getString(R.string.dashboard_actual_on, currentWeatherUi.formattedDateTime)
+			dashboardCurrentTemperatureTextView.text = getString(R.string.dashboard_celsius, currentWeatherUi.temperature)
+			dashboardWeatherStateTextView.text = currentWeatherUi.description
+			dashboardMinTemperatureTextView.text = getString(R.string.dashboard_celsius, currentWeatherUi.minTemperature)
+			dashboardMaxTemperatureTextView.text = getString(R.string.dashboard_celsius, currentWeatherUi.maxTemperature)
+			dashboardHumidityTextView.text = getString(R.string.dashboard_humidity, currentWeatherUi.humidity)
+			dashboardFeelsLikeTemperatureTextView.text = getString(R.string.dashboard_feels_like, currentWeatherUi.feelsLikeTemperature)
+			hourlyForecastAdapter?.submitList(state.hourlyForecastUis)
+			dailyForecastAdapter?.submitList(state.dailyForecastUis)
 		}
 	}
 
 	private fun handleAction(action: DashboardAction) {
 		when (action) {
-			DashboardAction.ShowError -> showErrorSnack()
+			DashboardAction.ShowError            -> showErrorSnack()
 			DashboardAction.OpenSearchCityScreen -> fragmentListener.onSearchCityClick()
 		}
 	}

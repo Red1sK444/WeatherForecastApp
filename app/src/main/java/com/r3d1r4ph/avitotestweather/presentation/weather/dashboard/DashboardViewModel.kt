@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.r3d1r4ph.avitotestweather.presentation.common.ui.AppViewModel
 import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.model.DashboardAction
 import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.model.DashboardState
+import com.r3d1r4ph.avitotestweather.presentation.weather.dashboard.model.toUi
 import com.r3d1r4ph.truedomain.weather.forecast.FetchWeatherForecastUseCase
 import com.r3d1r4ph.truedomain.weather.forecast.ObserveWeatherForecastUseCase
 import kotlinx.coroutines.flow.mapNotNull
@@ -21,9 +22,9 @@ class DashboardViewModel(
 		.mapNotNull { result ->
 			val dashboardState = result.getOrNull()?.let { weatherForecast ->
 				DashboardState(
-					currentWeather = weatherForecast.currentWeather,
-					hourlyForecasts = weatherForecast.hourlyForecasts,
-					dailyForecasts = weatherForecast.dailyForecasts
+					currentWeatherUi = weatherForecast.currentWeather?.toUi(),
+					hourlyForecastUis = weatherForecast.hourlyForecasts.map { it.toUi() },
+					dailyForecastUis = weatherForecast.dailyForecasts.map { it.toUi() }
 				)
 			}
 
@@ -33,7 +34,7 @@ class DashboardViewModel(
 			dashboardState
 		}
 		.onStart {
-			emit(DashboardState(currentWeather = null, hourlyForecasts = emptyList(), dailyForecasts = emptyList()))
+			emit(DashboardState(currentWeatherUi = null, hourlyForecastUis = emptyList(), dailyForecastUis = emptyList()))
 		}
 		.asLiveData()
 
