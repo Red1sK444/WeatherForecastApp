@@ -15,4 +15,5 @@
 	<!-- Search City -->
 	<string name="search_city_no_results">Очень жаль,\nно по вашему запросу\nничего не найдено</string>
 	<string name="search_city_input_city_name">Введите название города</string>
+	<string name="search_city_complete_city_name">%s, %s, %s</string>
 </resources>

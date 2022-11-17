@@ -34,7 +34,8 @@ class CityAdapter(private val listener: CityListener) : ListAdapter<City, CityAd
 		}
 
 		fun bind(city: City) {
-			binding.itemCityCompleteNameTextView.text = "${city.name}, ${city.region}, ${city.country}"
+			binding.itemCityCompleteNameTextView.text =
+				binding.root.resources.getString(R.string.search_city_complete_city_name, city.name, city.region, city.country)
 		}
 	}
 
