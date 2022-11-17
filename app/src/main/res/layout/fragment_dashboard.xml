@@ -21,7 +21,6 @@
 			android:textSize="30sp"
 			android:letterSpacing="-0.03"
 			android:textColor="@color/purple"
-			android:text="Томск"
 			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
 			app:layout_constraintEnd_toStartOf="@id/dashboardSearchCityImageButton"
 			app:layout_constraintTop_toTopOf="parent"/>
@@ -33,7 +32,6 @@
 			android:layout_marginTop="8dp"
 			android:textColor="@color/dark_gray"
 			android:textSize="15sp"
-			android:text="Актуально на 13:00 5 мая 2022"
 			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
 			app:layout_constraintTop_toBottomOf="@id/dashboardCityTextView"/>
 
@@ -54,7 +52,6 @@
 			android:layout_height="wrap_content"
 			android:textSize="95sp"
 			android:textColor="@color/dark_gray"
-			android:text="-3°"
 			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
 			app:layout_constraintTop_toBottomOf="@id/dashboardLastUpdateTimeTextView"
 		android:layout_marginTop="24dp"/>
@@ -66,7 +63,6 @@
 			android:textColor="@color/purple"
 			android:textSize="16sp"
 			android:textStyle="bold"
-			android:text="Облачно"
 			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
 			app:layout_constraintTop_toBottomOf="@id/dashboardCurrentTemperatureTextView"
 			app:layout_constraintEnd_toEndOf="@+id/dashboardHourlyForecastTextView"/>
@@ -79,7 +75,8 @@
 			android:src="@drawable/ic_arrow_down_accent"
 			app:layout_constraintStart_toStartOf="@id/dashboardMinTemperatureTextView"
 			app:layout_constraintEnd_toEndOf="@+id/dashboardMinTemperatureTextView"
-			app:layout_constraintBottom_toTopOf="@+id/dashboardMinTemperatureTextView"/>
+			app:layout_constraintBottom_toTopOf="@+id/dashboardMinTemperatureTextView"
+			tools:ignore="ContentDescription"/>
 
 		<ImageView
 			android:id="@+id/dashboardMaxTemperatureImageView"
@@ -89,7 +86,8 @@
 			android:src="@drawable/ic_arrow_up_accent"
 			app:layout_constraintStart_toStartOf="@+id/dashboardMaxTemperatureTextView"
 			app:layout_constraintEnd_toEndOf="@+id/dashboardMaxTemperatureTextView"
-			app:layout_constraintBottom_toTopOf="@+id/dashboardMaxTemperatureTextView"/>
+			app:layout_constraintBottom_toTopOf="@+id/dashboardMaxTemperatureTextView"
+			tools:ignore="ContentDescription"/>
 
 		<com.google.android.material.textview.MaterialTextView
 			android:id="@+id/dashboardMinTemperatureTextView"
@@ -98,7 +96,6 @@
 			android:layout_marginTop="24dp"
 			android:textColor="@color/purple"
 			android:textSize="15sp"
-			android:text="0°"
 			app:layout_constraintStart_toStartOf="@id/dashboardLeftGuideline"
 			app:layout_constraintTop_toBottomOf="@id/dashboardWeatherStateTextView"
 			app:layout_constraintEnd_toStartOf="@+id/dashboardMaxTemperatureTextView"
@@ -111,7 +108,6 @@
 			android:layout_marginStart="27dp"
 			android:textColor="@color/purple"
 			android:textSize="15sp"
-			android:text="10°"
 			app:layout_constraintStart_toEndOf="@+id/dashboardMinTemperatureTextView"
 			app:layout_constraintTop_toTopOf="@id/dashboardMinTemperatureTextView"
 			app:layout_constraintBottom_toBottomOf="@id/dashboardMinTemperatureTextView"/>
